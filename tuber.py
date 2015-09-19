@@ -1,9 +1,11 @@
 from urllib2 import Request, urlopen, URLError
 from secret import *
 import requests
+import json
 
 # URLS
 BASE_UBER_URL = "https://api.uber.com/v1/"
+SANDBOX_URL = "https://sandbox-api.uber.com/v1/"
 BASE_UBER_URL_1_1 = "https://api.uber.com/v1.1/"
 
 # Session
@@ -60,3 +62,46 @@ def me():
 		headers=generate_ride_headers(),
 	)
 	return response
+
+def request_uber(ori_lat, ori_lng, des_lat, des_lng):
+	products_url = BASE_UBER_URL + 'products'
+	request_url = SANDBOX_URL + 'requests'
+	params = {
+    	'latitude': ori_lat,
+    	'longitude': ori_lng
+    }
+	products_response = session.get(
+		products_url,
+		headers=generate_ride_headers(),
+		params=params
+	)
+	products = json.loads(products_response.text)["products"]
+	product_id = ""
+	# Loop over all products and find original Uber
+	for p in products:
+		if p["description"] == "The original Uber":
+			product_id = p["product_id"]
+			break
+	if product_id == "":
+		return None
+	request_params = json.dumps({
+    	'start_latitude': ori_lat,
+    	'start_longitude': ori_lng,
+    	'end_latitude': des_lat,
+    	'end_longitude': des_lng,
+    	'product_id': product_id,
+    })
+	requests_response = session.post(
+		request_url,
+		headers=generate_ride_headers(),
+		data=request_params,
+	)
+	return requests_response.text
+
+def check_request(request_id):
+	request_url = SANDBOX_URL + 'requests/' + request_id
+	requests_response = session.get(
+		request_url,
+		headers=generate_ride_headers(),
+	)
+	return requests_response.text
