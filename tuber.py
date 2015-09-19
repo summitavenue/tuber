@@ -63,9 +63,38 @@ def me():
 	)
 	return response
 
+def price(ori_lat, ori_lng, des_lat, des_lng):
+    url = BASE_UBER_URL + 'estimates/price'
+    params = {
+        'start_latitude': ori_lat,
+        'start_longitude': ori_lng,
+        'end_latitude': des_lat,
+        'end_longitude': des_lng,
+    }
+
+    response = session.get(
+        url,
+        headers=generate_ride_headers(),
+        params=params,
+    )
+    prices = json.loads(response)["prices"]
+    estimate = ""
+    # Iterate through all prices to get uberX estimate
+    for p in prices:
+    	if p["display_name"] == "uberX":
+    		estimate = p["estimate"]
+    		break
+   	if estimate == "":
+   		return None
+   	else:
+   		return estimate
+
 def request_uber(ori_lat, ori_lng, des_lat, des_lng):
+	# Initialize API URLS
 	products_url = BASE_UBER_URL + 'products'
 	request_url = SANDBOX_URL + 'requests'
+
+	# Get arguments
 	params = {
     	'latitude': ori_lat,
     	'longitude': ori_lng
@@ -77,6 +106,7 @@ def request_uber(ori_lat, ori_lng, des_lat, des_lng):
 	)
 	products = json.loads(products_response.text)["products"]
 	product_id = ""
+
 	# Loop over all products and find original Uber
 	for p in products:
 		if p["description"] == "The original Uber":
@@ -84,6 +114,8 @@ def request_uber(ori_lat, ori_lng, des_lat, des_lng):
 			break
 	if product_id == "":
 		return None
+
+	# Send the request for that product id
 	request_params = json.dumps({
     	'start_latitude': ori_lat,
     	'start_longitude': ori_lng,
