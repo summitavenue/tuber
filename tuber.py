@@ -2,6 +2,7 @@ from urllib2 import Request, urlopen, URLError
 from secret import *
 import requests
 import json
+import random
 
 # URLS
 BASE_UBER_URL = "https://api.uber.com/v1/"
@@ -77,17 +78,14 @@ def price(ori_lat, ori_lng, des_lat, des_lng):
         headers=generate_ride_headers(),
         params=params,
     )
-    prices = json.loads(response)["prices"]
+    prices = json.loads(response.text)["prices"]
     estimate = ""
     # Iterate through all prices to get uberX estimate
     for p in prices:
     	if p["display_name"] == "uberX":
     		estimate = p["estimate"]
-    		break
-   	if estimate == "":
-   		return None
-   	else:
-   		return estimate
+    		return estimate
+   	return None
 
 def request_uber(ori_lat, ori_lng, des_lat, des_lng):
 	# Initialize API URLS
@@ -131,7 +129,20 @@ def request_uber(ori_lat, ori_lng, des_lat, des_lng):
 	return requests_response.text
 
 def check_request(request_id):
+	accepted_url = SANDBOX_URL + 'sandbox/requests/' + request_id
 	request_url = SANDBOX_URL + 'requests/' + request_id
+	random_num = random.random()
+	print random_num
+	accepted = json.dumps({"status":"accepted"})
+	if random_num <= .90:
+		# Set status to accepted
+		response = session.put(
+			accepted_url,
+			headers=generate_ride_headers(),
+			data=accepted
+		)
+		print response.text
+	# Get actual response request
 	requests_response = session.get(
 		request_url,
 		headers=generate_ride_headers(),

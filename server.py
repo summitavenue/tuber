@@ -29,7 +29,7 @@ def message():
 
     # If the response is empty, we don't have a driver.
     if uber_response is None:
-    	resp.message("Sorry. No Uber driver's in your area.")
+    	resp.message("Sorry. No Uber drivers in your area.")
     	return str(resp)
 
     # Load valid response into dictionary
@@ -47,13 +47,21 @@ def message():
     	phone_number = uber_response["driver"]["phone_number"]
     	make = uber_response["vehicle"]["make"]
     	model = uber_response["vehicle"]["model"]
-    	license_plate = uber_response["vehicle"]["liscense_plate"]
+    	license_plate = uber_response["vehicle"]["license_plate"]
     	eta = uber_response["eta"]
-    	resp.message("Thanks for waiting! Look for the " + make + " " + model + " with a liscense plate of " + license_plate + \
+    	resp.message("Thanks for waiting! Look for the " + make + " " + model + " with a license plate of " + "\"" + license_plate + "\"" + \
                      " driven by " + name + ". The driver's phone number is " + phone_number + " and he/she should be arriving in " \
-                      + eta + " minutes! Your price estimate is " + estimate)
+                      + str(eta) + " minutes! Your price estimate is " + estimate)
     return str(resp)
 
+
+
+
+
+# VOICE STUFF!
+# LOL
+#
+#
 @app.route("/voice", methods=['GET', 'POST'])
 def voice():
     """
@@ -61,13 +69,6 @@ def voice():
     """
     # Prepare Twilio response
     resp = twilio.twiml.Response()
-    # Get From number and name
-    from_number = request.values.get('From', None)
-    if from_number in callers:
-        name = callers[from_number]
-    else:
-        name = "John Smith"
-
     resp.say("Yo fam what's good? Tryna go someplace? I'll hook you up.")
 
     with resp.gather(numDigits=2, action="/handle_ride", method="POST") as g:
@@ -116,12 +117,12 @@ def handle_ride():
         phone_number = uber_response["driver"]["phone_number"]
         make = uber_response["vehicle"]["make"]
         model = uber_response["vehicle"]["model"]
-        license_plate = uber_response["vehicle"]["liscense_plate"]
+        license_plate = uber_response["vehicle"]["license_plate"]
         eta = uber_response["eta"]
         resp.say("Thanks for the directions! We'll be sending a confirmation message shortly.")
-        resp.message("Thanks for waiting! Look for the " + make + " " + model + " with a liscense plate of " + license_plate + \
+        resp.message("Thanks for waiting! Look for the " + make + " " + model + " with a license plate of " + "\"" + license_plate + "\"" + \
                      " driven by " + name + ". The driver's phone number is " + phone_number + " and he/she should be arriving in " \
-                      + eta + " minutes! Your price estimate is " + estimate)
+                      + str(eta) + " minutes! Your price estimate is " + estimate)
     return str(resp)
 
 
