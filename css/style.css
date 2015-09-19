@@ -102,7 +102,6 @@ hr.short {
 	height: 60px;
 	background: linear-gradient(rgba(28,28,28,1), rgba(28,28,28,0.9)); 
 	color: white;
-	border-bottom: 1px solid rgba(255,255,255,0.2);
 	z-index: 99;
 }
 
