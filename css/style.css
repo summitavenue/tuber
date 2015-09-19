@@ -155,7 +155,7 @@ hr.short {
 	/*	border: 1px solid rgba(255,255,255,0.5);*/
 	}
 
-	#sec1-button, #sec2-button {
+	#sec1-button, #sec2-button, #signup-button {
 		width: 40%;
 		white-space: nowrap;
 		margin-top: 10%;
@@ -165,6 +165,19 @@ hr.short {
 		text-align: center;
 		border: 1px solid rgba(255,255,255,0.8);
 		font-family: 'Quicksand';
+	}
+
+	#signup-button {
+		margin-top: 5px;
+		width: 40%;
+		padding: 5px;
+		cursor: pointer;
+		text-align: center;
+	}
+
+	#signup-button:hover{
+		color: rgba(12,134,241,1);
+		border: 1px solid rgba(12,134,241,1);;
 	}
 
 	#uber-t {
@@ -231,35 +244,19 @@ hr.short {
 	}
 
 	#login-form {
-	height: 80px;
-	padding-top: 15px;
+		height: 80px;
+		padding-top: 15px;
 	}
 
 		#login-form input[type="text"] { 
-			height: 40px;
-			width: 260px;
-			border: 1px solid #aaa;
-		    border-radius: 5px;
-		    background-color: #E5E5E5;
+			height: 50px;
+			width: 60%;
+			font-family: 'Quicksand';
+		    color: white;
+		    background: linear-gradient(rgba(28,28,28,1), rgba(28,28,28,0.9));
+		    border-style: none;
 		    margin: auto;
-		    display: block;
-			padding-left: 85px;
+		    display:block;
+		    margin-top: 20px;
+			padding-left: 22.5%;
 		}
-
-		#login-form input[type="submit"] {
-			height: 40px;
-			width: 80px;
-			border: 1px solid rgba(0,0,0,0.5);
-		    border-radius: 5px;
-		    background-color: rgba(128,128,128,1);
-			margin: 5px;
-			padding: 5px;
-			color: white;
-		}
-
-		#login-form input[type="submit"]:hover {
-			border: 1px solid rgba(0,0,0,0.5);
-		    background-color: rgba(229,229,229,1);
-			color: rgba(28,28,28,1);
-		}
-
