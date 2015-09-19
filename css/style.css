@@ -235,7 +235,7 @@ hr.short {
 
 	#sec3-text-wrapper {
 		width: 50%;
-		height: 50%;
+		height: auto;
 		position: absolute;
 		top: 10%;
 		left: 25%;
@@ -245,8 +245,8 @@ hr.short {
 	}
 
 	#login-form {
-		height: 80px;
 		padding-top: 15px;
+		padding-bottom: 15px;
 	}
 
 		#login-form input[type="text"] { 
