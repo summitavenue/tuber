@@ -73,6 +73,11 @@ h5 {
 	font-family: 'Quicksand';
 }
 
+p {
+	font-family: 'Quicksand';
+	color: rgba(255,255,255,0.8);
+}
+
 
 /* HR STYLING */
 
@@ -230,14 +235,15 @@ hr.short {
 	padding-top: 15px;
 	}
 
-		#login-form input[type="text"], #login-form input[type="password"] { 
+		#login-form input[type="text"] { 
 			height: 40px;
-			width: 160px;
+			width: 260px;
 			border: 1px solid #aaa;
 		    border-radius: 5px;
 		    background-color: #E5E5E5;
-		    margin: 5px;
-			padding: 5px;
+		    margin: auto;
+		    display: block;
+			padding-left: 85px;
 		}
 
 		#login-form input[type="submit"] {

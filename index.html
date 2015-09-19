@@ -66,19 +66,26 @@
             <hr>
             <ul id='how-it-works'>
                 <li>
-                    Step One
+                    Step One : Sign-Up
                     <hr class='short'>
-                    text
-                    <br>
+                    <p class="step-info">
+                    Provide your phone number and Uber credentials
+                    </p>
                     <img class='step-pics' src='assets/signup.png' />
                 </li>
                 <li>
-                    Step Two
+                    Step Two : Text
                     <hr class='short'>
+                    <p class="step-info">
+                    Text request to (281)-942-4162
+                    </p>
                 </li>
                 <li>
-                    Step Three
+                    Step Three : Confirm
                     <hr class='short'>
+                    <p class="step-info">
+                    Confirm Uber product and price
+                    </p>
                 </li>
             </ul>
             <div id='sec2-button'>
@@ -92,12 +99,13 @@
     <div id='sec3'>
         <div id='sec3-text-wrapper'>
             <h5>
-                JOIN THE REVOLUTION.
+                GOT TUBER?
             </h5>
             <hr>
             <form id="login-form">
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="text" name="number" placeholder="Phone Number" required>
+                <input type="hidden" name="token" >
+                <br>
                 <input type="submit" name="signup" value="Sign Up">
             </form>
         </div>
