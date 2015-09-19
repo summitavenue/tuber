@@ -1,0 +1,255 @@
+* {
+	/* UNCOMMENT to see sections better when debugging */
+	/*border: 1px dashed red;*/
+	font-family: 'Raleway', sans-serif;
+	-webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+	font-family: 'Quicksand';
+}
+
+/* HEADER STYLING */
+
+h1, h2, h3, h4 {
+	font-family: 'Poiret One';
+	text-align: center;
+}
+
+h1 {
+	font-size: 64pt;
+	font-weight: 400;
+	margin: 50px;
+	color: rgba(255,255,255,0.8);
+	font-family: 'Quicksand';
+}
+
+h2 {
+	font-size: 28pt;
+	font-weight: 200;
+	text-align: center;
+	margin: 30px;
+	color: rgba(255,255,255,0.5);
+}
+
+h3 {
+	font-size: 24pt;
+	font-weight: 200;
+	text-align: center;
+	margin: 20px;
+	color: rgba(255,255,255,0.8);
+}
+
+h4 {
+	font-size: 18pt;
+	font-weight: 200;
+	text-align: center;
+	margin: 20px;
+	color: rgba(255,255,255,0.5);
+}
+
+h5 {
+	font-size: 28pt;
+	font-weight: 200;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	color: rgba(255,255,255,0.8);
+	font-family: 'Quicksand';
+}
+
+
+/* HR STYLING */
+
+hr {
+	width: calc(100% - 20px);
+	height: 4px;
+    border: none;
+    background: radial-gradient(rgba(255,255,255,1), rgba(255,255,255,0));
+}
+hr.short {
+	width: 150px;
+	height: 2px;
+}
+
+/* NAV STYLING */
+
+#nav-wrapper {
+	position: fixed;
+	margin: 0px;
+	width: 100%;
+	min-width: 1000px;
+	height: 60px;
+	background: linear-gradient(rgba(28,28,28,1), rgba(28,28,28,0.9)); 
+	color: white;
+	border-bottom: 1px solid rgba(255,255,255,0.2);
+	z-index: 99;
+}
+
+	#nav-wrapper ul {
+		display: inline-block;
+		margin: 0px;
+		padding: 0px;
+	}
+
+		#nav-wrapper ul .nav-item, #nav-wrapper ul .nav-item-logo {
+			list-style-type: none;
+			min-width: 200px;
+			height: 60px;
+			display: table-cell;
+			text-align: center;
+			vertical-align: middle;
+			font-weight: 200;
+			font-family: 'Quicksand';
+		}
+
+		#nav-wrapper ul .nav-item:hover {
+			font-weight: 400;
+			font-size: 14pt;
+			background: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.1));
+			border-bottom: 2px solid rgba(12,134,241,0.8);
+			font-color: rgba(12,134,241,1);
+			cursor: pointer;
+		}
+
+#sec1 {
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(rgba(0,2,10,1), rgba(0,2,10,0.95));
+	position: relative;
+}
+
+	#sec1-text-wrapper {
+		width: 50%;
+		height: 70%;
+		position: absolute;
+		top: 10%;
+		bottom: 20%;
+		left: 25%;
+		color: white;
+		background-color:;
+	/*	border: 1px solid rgba(255,255,255,0.5);*/
+	}
+
+	#sec1-button, #sec2-button {
+		width: 40%;
+		white-space: nowrap;
+		margin-top: 10%;
+		margin-left: 30%;
+		margin-right: 30%;
+		padding: 20px;
+		text-align: center;
+		border: 1px solid rgba(255,255,255,0.8);
+		font-family: 'Quicksand';
+	}
+
+	#uber-t {
+		color: rgba(12,134,241,1);
+		font-weight: 700;
+		border: 2px solid rgba(12,134,241,0.8);
+		padding-left: 20px;
+		padding-right: 20px;
+		margin-right: 10px;
+	}
+
+#sec2 {
+	width: 100%;
+	height: 150%;
+	background: linear-gradient(rgba(0,2,10,0.95), rgba(3,31,51,1));
+	position: relative;
+}
+
+	#sec2-text-wrapper {
+		width: 50%;
+		height: 70%;
+		position: absolute;
+		top: 5%;
+		left: 25%;
+		color: white;
+		background-color:;
+		/*border: 1px solid rgba(255,255,255,0.5);*/
+	}
+
+	#how-it-works {
+		padding: 0px;
+	}
+
+	#how-it-works li {
+		text-align: center;
+		margin: 10px;
+		padding: 10px;
+		list-style-type: none;
+		font-family: 'Quicksand';
+		/*border: 1px solid white;*/
+	}
+
+		.step-pics {
+			width: 256px;
+			height: 256px;
+		}
+
+#sec3 {
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(rgba(3,31,51,1), rgba(0,2,10,0.95));
+	position: relative;
+}
+
+	#sec3-text-wrapper {
+		width: 50%;
+		height: 70%;
+		position: absolute;
+		top: 10%;
+		left: 25%;
+		color: white;
+		background-color:;
+		border: 1px solid rgba(255,255,255,0.5);
+	}
+
+	#login-form {
+	height: 80px;
+	padding-top: 15px;
+	}
+
+		#login-form input[type="text"], #login-form input[type="password"] { 
+			height: 40px;
+			width: 160px;
+			border: 1px solid #aaa;
+		    border-radius: 5px;
+		    background-color: #E5E5E5;
+		    margin: 5px;
+			padding: 5px;
+		}
+
+		#login-form input[type="submit"] {
+			height: 40px;
+			width: 80px;
+			border: 1px solid rgba(0,0,0,0.5);
+		    border-radius: 5px;
+		    background-color: rgba(128,128,128,1);
+			margin: 5px;
+			padding: 5px;
+			color: white;
+		}
+
+		#login-form input[type="submit"]:hover {
+			border: 1px solid rgba(0,0,0,0.5);
+		    background-color: rgba(229,229,229,1);
+			color: rgba(28,28,28,1);
+		}
+
