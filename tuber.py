@@ -27,7 +27,6 @@ def get_location(context):
 		lng_begin = result.find('<lng>')
 		lng_end = result.find('</lng>')
 		ori_lng = result[lng_begin+5:lng_end]
-		return (ori_lat, ori_lng)
 	except URLError as e:
 		print ('error'), e
 
@@ -42,9 +41,9 @@ def get_location(context):
 		lng_begin = result.find('<lng>')
 		lng_end = result.find('</lng>')
 		des_lng = result[lng_begin+5:lng_end]
-		return (des_lat, des_lng)
 	except URLError as e:
 		print ('error'), e
+	return (ori_lat, ori_lng, des_lat, des_lng)
 
 # Generate headers we need to access everything
 def generate_ride_headers():

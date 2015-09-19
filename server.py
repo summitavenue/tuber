@@ -10,8 +10,9 @@ def hello_monkey():
     """Respond to incoming calls with a simple text message."""
  	
     resp = twilio.twiml.Response()
+    ori_lat, ori_lng, des_lat, des_lng = get_location(response.args.get('Body'))
     uber_response = me()
-    resp.message("Hello! Here is your uber profile: " + uber_response.text)
+    resp.message("Hello! Here is your location: " + str(ori_lat) + str(ori_lng))
     return str(resp)
 
 
