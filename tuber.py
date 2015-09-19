@@ -1,5 +1,4 @@
 from urllib2 import Request, urlopen, URLError
-from secret import *
 import requests
 import json
 import random
