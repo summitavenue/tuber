@@ -1,5 +1,13 @@
 from urllib2 import Request, urlopen, URLError
 from secret import *
+import requests
+
+# URLS
+BASE_UBER_URL = "https://api.uber.com/v1/"
+BASE_UBER_URL_1_1 = "https://api.uber.com/v1.1/"
+
+# Session
+session = requests.Session()
 
 def get_location(context):
 	query = context.split("to")
@@ -7,7 +15,6 @@ def get_location(context):
 	des = query[1].strip().replace(' ','+')
 	request = Request('https://maps.googleapis.com/maps/api/place/textsearch/xml?query='+ori+'&key='+key)
 	request2 = Request('https://maps.googleapis.com/maps/api/place/textsearch/xml?query='+des+'&key='+key)
-
 
 	try:
 		response = urlopen(request)
@@ -20,9 +27,10 @@ def get_location(context):
 		lng_begin = result.find('<lng>')
 		lng_end = result.find('</lng>')
 		ori_lng = result[lng_begin+5:lng_end]
-
+		return (ori_lat, ori_lng)
 	except URLError as e:
 		print ('error'), e
+
 	try:
 		response = urlopen(request2)
 		result = response.read()
@@ -34,7 +42,22 @@ def get_location(context):
 		lng_begin = result.find('<lng>')
 		lng_end = result.find('</lng>')
 		des_lng = result[lng_begin+5:lng_end]
-
+		return (des_lat, des_lng)
 	except URLError as e:
 		print ('error'), e
 
+# Generate headers we need to access everything
+def generate_ride_headers():
+    """Generate the header object that is used to make api requests."""
+    return {
+        'Authorization': 'bearer %s' % UBER_ACCESS_TOKEN,
+        'Content-Type': 'application/json',
+    }
+
+def me():
+	url = BASE_UBER_URL + 'me'
+	response = session.get(
+		url,
+		headers=generate_ride_headers(),
+	)
+	return response
