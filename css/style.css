@@ -126,6 +126,10 @@ hr.short {
 			font-color: rgba(12,134,241,1);
 			cursor: pointer;
 		}
+	
+	#nav-home {
+		cursor: pointer;
+	}
 
 #sec1 {
 	width: 100%;
