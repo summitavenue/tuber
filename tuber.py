@@ -3,11 +3,15 @@ from secret import *
 import requests
 import json
 import random
+import os
 
 # URLS
 BASE_UBER_URL = "https://api.uber.com/v1/"
 SANDBOX_URL = "https://sandbox-api.uber.com/v1/"
 BASE_UBER_URL_1_1 = "https://api.uber.com/v1.1/"
+
+key = os.environ["GOOGLE_KEY"]
+UBER_ACCESS_TOKEN = os.environ["UBER_ACCESS_TOKEN"]
 
 # Session
 app_session = requests.Session()
