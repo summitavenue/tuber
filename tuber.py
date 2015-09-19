@@ -109,7 +109,6 @@ def get_products(ori_lat, ori_lng):
 
 def request_uber(ori_lat, ori_lng, des_lat, des_lng, product_id):
     # Initialize API URLS
-    products_url = BASE_UBER_URL + 'products'
     request_url = SANDBOX_URL + 'requests'
 
     # Send the request for that product id

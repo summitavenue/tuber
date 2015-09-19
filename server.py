@@ -55,6 +55,7 @@ def message():
             resp.message("Sorry. Uber is not available in your area.")
             session["product_selected"] = False
             session["uber_confirmed"] = False
+            return str(resp)
         else:
             resp.message("Thanks for using Uber! The following are available products in your area: \n\n" + \
                          ", ".join(product_names) + "\n\n Please type the name of the product you wish to use." + \
