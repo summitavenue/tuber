@@ -1,10 +1,11 @@
 from flask import Flask, request, redirect, session
+import os
 import twilio.twiml
 from tuber import * 
 import time
 
 app = Flask(__name__)
-app.secret_key = "super secret salted key"
+app.secret_key = os.urandom(24)
 
 users = {
     "+12814680885" : "Charles"
