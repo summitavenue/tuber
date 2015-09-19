@@ -199,7 +199,7 @@ hr.short {
 
 	#sec2-text-wrapper {
 		width: 50%;
-		height: 50%;
+		height: auto;
 		position: absolute;
 		top: 5%;
 		left: 25%;
@@ -235,7 +235,7 @@ hr.short {
 
 	#sec3-text-wrapper {
 		width: 50%;
-		height: 70%;
+		height: auto;
 		position: absolute;
 		top: 10%;
 		left: 25%;
