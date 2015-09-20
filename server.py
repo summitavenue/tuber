@@ -16,6 +16,10 @@ landmarks = {
     "2" : "Major League Hacking NYC"
 }
 
+@app.route("/", methods=['GET', 'POST'])
+def landing():
+    return "Hello World!"
+
 @app.route("/message", methods=['GET', 'POST'])
 def message():
     """
