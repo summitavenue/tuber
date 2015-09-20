@@ -13,7 +13,7 @@ users = {
  
 landmarks = {
     "1" : "Palladium Hall NYC",
-    "2" : "Major League Hacking NYC"
+    "2" : "Datadog NYC"
 }
 
 @app.route("/", methods=['GET', 'POST'])
@@ -139,6 +139,8 @@ def message():
 
             # Load valid response into dictionary
             uber_response = json.loads(uber_response)
+            print uber_response
+            print generate_ride_headers()
             request_id = uber_response["request_id"]
 
             # Poll while waiting for a driver
@@ -177,13 +179,13 @@ def voice():
     """
     # Prepare Twilio response
     resp = twilio.twiml.Response()
-    resp.say("Yo fam what's good? Tryna go someplace? I'll hook you up.")
+    resp.say("Yo what's up? Are you tryna get somewhere? I'll hook you up with an Uber fam.")
 
     with resp.gather(numDigits=2, action="/handle_ride", method="POST") as g:
         g.say("Enter a two digit number where the first number is your origin \
                and your second number is your destination! \
                For Palladium Hall press 1. \
-               For MLH press 2.")
+               For Datadog press 2.")
     return str(resp)
 
 @app.route("/handle_ride", methods=['GET', 'POST'])
@@ -202,7 +204,7 @@ def handle_ride():
     ori_lat, ori_lng, des_lat, des_lng = get_location(directions_string)
 
     # Request an Uber and get pricing info
-    uber_response = request_uber(ori_lat, ori_lng, des_lat, des_lng)
+    uber_response = get_uberx(ori_lat, ori_lng, des_lat, des_lng)
     estimate = price(ori_lat, ori_lng, des_lat, des_lng)
 
     # If the response is empty, we don't have a driver.
@@ -227,8 +229,7 @@ def handle_ride():
         model = uber_response["vehicle"]["model"]
         license_plate = uber_response["vehicle"]["license_plate"]
         eta = uber_response["eta"]
-        resp.say("Thanks for the directions! We'll be sending a confirmation message shortly.")
-        resp.message("Thanks for waiting! Look for the " + make + " " + model + " with a license plate of " + "\"" + license_plate + "\"" + \
+        resp.say("Thanks for waiting! Look for the " + make + " " + model + " with a license plate of " + "\"" + license_plate + "\"" + \
                      " driven by " + name + ". The driver's phone number is " + phone_number + " and he/she should be arriving in " \
                       + str(eta) + " minutes! Your price estimate is " + estimate)
     return str(resp)

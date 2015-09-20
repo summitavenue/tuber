@@ -107,6 +107,7 @@ def get_products(ori_lat, ori_lng):
         headers=generate_ride_headers(),
         params=params
     )
+    print products_response
     products = json.loads(products_response.text)["products"]
     return products
 
@@ -129,11 +130,36 @@ def request_uber(ori_lat, ori_lng, des_lat, des_lng, product_id):
     )
     return requests_response.text
 
+def get_uberx(ori_lat, ori_lng, des_lat, des_lng):
+    # Initialize API URLS
+    request_url = SANDBOX_URL + 'requests'
+    products = get_products(ori_lat, ori_lng)
+    product_id = ""
+    for p in products:
+        if p["display_name"] == "uberX":
+            product_id = p["product_id"]
+            break
+    # Send the request for that product id
+    request_params = json.dumps({
+        'start_latitude': ori_lat,
+        'start_longitude': ori_lng,
+        'end_latitude': des_lat,
+        'end_longitude': des_lng,
+        'product_id': product_id,
+    })
+    requests_response = app_session.post(
+        request_url,
+        headers=generate_ride_headers(),
+        data=request_params,
+    )
+    return requests_response.text
+
 def check_request(request_id):
     accepted_url = SANDBOX_URL + 'sandbox/requests/' + request_id
     request_url = SANDBOX_URL + 'requests/' + request_id
     random_num = random.random()
     print random_num
+    print generate_ride_headers()
     accepted = json.dumps({"status":"accepted"})
     if random_num <= .70:
         # Set status to accepted
